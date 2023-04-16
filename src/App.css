@@ -8,6 +8,7 @@
 }
 html {
   padding: "5px";
+  background-color: #6e6e6e;
 }
 
 @media (prefers-reduced-motion: no-preference) {
