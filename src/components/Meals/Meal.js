@@ -1,45 +1,90 @@
 import {
-  Typography,
-  List,
   ListItem,
-  ListItemButton,
-  ListItemText,
+  Box,
   Divider,
+  TextField,
+  Grid,
+  Button,
+  Typography,
+  Stack,
 } from "@mui/material";
 import React from "react";
 
 const Meal = (props) => {
   return (
     <>
-      <List>
-        <ListItem disablePadding disableGutters>
-          <ListItemButton
+      <ListItem>
+        <Grid container>
+          <Grid
+            item
+            xs={9}
             style={{
-              display: "flex",
-              flexDirection: "column",
+              display: "block",
+              marginTop: "8px",
+              marginBottom: "8px",
+              marginLeft: "16px",
             }}
           >
-            <ListItemText
+            <Box fontWeight="bold">{props.name}</Box>
+            <Box fontStyle="italic" fontSize="12px">
+              {props.description}
+            </Box>
+            <Box fontWeight="bold" color="rgb(194, 96, 45)">
+              {`  $${props.price}`}
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={2}
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+              marginLeft: "auto",
+            }}
+          >
+            <Stack
+              direction="row"
+              spacing={2}
               style={{
-                marginLeft: "1px",
-                display: "flex",
-                flexDirection: "flex-start",
-                fontWeight: "bolder",
+                marginBottom: "5px",
               }}
-            >{`${props.name}`}</ListItemText>
-            <ListItemText
-              style={{
-                marginLeft: "1px",
-                display: "flex",
-                flexDirection: "flex-start",
-                fontStyle: "italic",
-              }}
-            >{` ${props.description}`}</ListItemText>
+            >
+              <Typography alignSelf="center" fontWeight="bold">
+                Amount
+              </Typography>
 
-            <ListItemText primary={`$${props.price}`} color="error" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+              <TextField
+                id=""
+                size="small"
+                margin="12px"
+                style={{
+                  float: "right",
+                }}
+                sx={{
+                  width: "40px",
+                  "& .MuiInputBase-input": {
+                    padding: "1px",
+                    marginLeft: "4px",
+                  },
+                }}
+              />
+            </Stack>
+            <Button
+              color="error"
+              variant="contained"
+              style={{
+                marginTop: "1px",
+                marginLeft: "20px",
+                borderRadius: "18px",
+                padding: "1px",
+              }}
+            >
+              + Add
+            </Button>
+          </Grid>
+        </Grid>
+      </ListItem>
+
       <Divider />
     </>
   );

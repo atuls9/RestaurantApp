@@ -1,6 +1,6 @@
 import React from "react";
 import Meal from "./Meal";
-import { Box } from "@mui/material";
+import { Box, List } from "@mui/material";
 
 const DUMMY_MEALS = [
   {
@@ -44,10 +44,9 @@ const DummyMeals = () => {
       backgroundColor="white"
       mt="8rem"
       ml="20%"
-      style={{ display: "flex", justifyContent: "flex-start" }}
       borderRadius={4}
     >
-      <ul>{meals}</ul>;
+      <List>{meals}</List>
     </Box>
   );
 };
