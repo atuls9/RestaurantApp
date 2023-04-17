@@ -2,7 +2,11 @@ import React from "react";
 import { Grid, Paper, Box, Button, Chip } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const Header = () => {
+const Header = (props) => {
+  const showCart = () => {
+    props.showCart(true);
+  };
+
   return (
     <Paper
       style={{
@@ -39,6 +43,7 @@ const Header = () => {
               marginTop: "8px",
               marginRight: "20px",
             }}
+            onClick={showCart}
             variant="contained"
             size="small"
           >
