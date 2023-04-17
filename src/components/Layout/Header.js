@@ -4,7 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Header = (props) => {
   const showCart = () => {
-    props.showCart(true);
+    props.setOpen(true);
   };
 
   return (
@@ -42,6 +42,8 @@ const Header = (props) => {
               borderRadius: "20px",
               marginTop: "8px",
               marginRight: "20px",
+              paddingLeft: "30px",
+              paddingRight: "30px",
             }}
             onClick={showCart}
             variant="contained"

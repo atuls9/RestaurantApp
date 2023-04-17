@@ -8,10 +8,10 @@ const MealSummary = () => {
       elevation={12}
       style={{
         height: "14rem",
-        width: "60%",
+        width: "40%",
         display: "flex",
         marginTop: "-7rem",
-        marginLeft: "20%",
+        marginLeft: "30%",
         backgroundColor: "#3F3F3F",
         position: "absolute",
         borderRadius: "1rem",

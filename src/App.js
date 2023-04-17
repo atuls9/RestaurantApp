@@ -4,23 +4,20 @@ import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import DummyMeals from "./components/Meals/DummyMeals";
 import MealSummary from "./components/Meals/MealSummary";
+import { Modal } from "@mui/material";
 
 function App() {
-  const [showCart, setShowCart] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
+  const handleClose = () => setOpenCart(false);
 
-  const cartShow = (state) => {
-    setShowCart(state);
-  };
   return (
     <div className="App">
-      {showCart && <Cart />}
-      {!showCart && (
-        <>
-          <Header showCart={cartShow} />
-          <MealSummary />
-          <DummyMeals />
-        </>
-      )}
+      <Header setOpen={setOpenCart} />
+      <MealSummary />
+      <DummyMeals />
+      <Modal open={openCart} onClose={handleClose}>
+        <Cart setCloseCart={handleClose}> </Cart>
+      </Modal>
     </div>
   );
 }

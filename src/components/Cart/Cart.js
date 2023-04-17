@@ -25,7 +25,7 @@ const itemList = [
   },
 ];
 
-const Cart = () => {
+const Cart = (props) => {
   let total = 0;
   const items = itemList.map((item) => {
     total = total + item.price * item.amount;
@@ -52,7 +52,7 @@ const Cart = () => {
       borderRadius={4}
     >
       <Grid>{items}</Grid>
-      <Grid container paddingRight="16px">
+      <Grid container paddingRight="16px" paddingLeft="16px">
         <Grid item xs={3} sx={{ justifyContent: "flex-start" }}>
           <Typography fontWeight="bold">Total Amount</Typography>
         </Grid>
@@ -76,6 +76,7 @@ const Cart = () => {
           color="error"
           variant="outlined"
           size="small"
+          onClick={() => props.setCloseCart()}
           style={{
             marginTop: "1px",
             marginLeft: "20px",

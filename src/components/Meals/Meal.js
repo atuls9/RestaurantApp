@@ -57,6 +57,7 @@ const Meal = (props) => {
                 id=""
                 size="small"
                 margin="12px"
+                type="number"
                 style={{
                   float: "right",
                 }}
