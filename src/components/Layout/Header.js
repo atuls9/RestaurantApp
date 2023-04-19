@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Paper, Box, Button, Chip } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CartContext from "../../store/cartContext";
 
 const Header = (props) => {
+  const cartCtx = useContext(CartContext);
+  const numberOfCartItems = cartCtx.items.reduce((curr, item) => {
+    return curr + item.amount;
+  }, 0);
+
   const showCart = () => {
     props.setOpen(true);
   };
@@ -23,11 +29,10 @@ const Header = (props) => {
       <Grid item xs={12} sm={6}>
         <Box bgcolor="error.light" height="50px">
           <Chip
-            label=" ReactMeals "
+            label="ATUL"
             style={{
               fontWeight: "bold",
               fontSize: "25px",
-              //   marginBottom: "3px",
               marginTop: "10px",
               marginLeft: "50px",
               float: "left",
@@ -50,7 +55,7 @@ const Header = (props) => {
             size="small"
           >
             <ShoppingCartIcon /> Your Cart
-            <Chip label="0" color="secondary" size="small" />
+            <Chip label={numberOfCartItems} color="secondary" size="small" />
           </Button>
         </Box>
       </Grid>

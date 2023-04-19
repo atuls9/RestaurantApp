@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   ListItem,
   Box,
@@ -8,16 +9,24 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import React from "react";
+import CartContext from "../../store/cartContext";
 
 const Meal = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    cartCtx.addItem(props.item);
+    // console.log(cartCtx);
+  };
   return (
     <>
+      {/* {console.log("inside render", cartCtx)} */}
       <ListItem>
         <Grid container>
           <Grid
             item
-            xs={9}
+            xs={8}
             style={{
               display: "block",
               marginTop: "8px",
@@ -25,12 +34,12 @@ const Meal = (props) => {
               marginLeft: "16px",
             }}
           >
-            <Box fontWeight="bold">{props.name}</Box>
+            <Box fontWeight="bold">{props.item.name}</Box>
             <Box fontStyle="italic" fontSize="12px">
-              {props.description}
+              {props.item.description}
             </Box>
             <Box fontWeight="bold" color="rgb(194, 96, 45)">
-              {`  $${props.price}`}
+              {`  $${props.item.price}`}
             </Box>
           </Grid>
           <Grid
@@ -72,6 +81,7 @@ const Meal = (props) => {
             </Stack>
             <Button
               color="error"
+              onClick={submitHandler}
               variant="contained"
               style={{
                 marginTop: "1px",
