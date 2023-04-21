@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../store/cartContext";
 import {
   Box,
   ListItem,
@@ -6,36 +7,105 @@ import {
   Button,
   Divider,
   Typography,
+  Stack,
+  TextField,
 } from "@mui/material";
 
-const itemList = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 25,
-    amount: 2,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 25,
-    amount: 3,
-  },
-];
-
 const Cart = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const addItemHandler = (item) => {
+    const existingCartItemIndex = cartCtx.items.findIndex(
+      (el) => el.id === item.id
+    );
+
+    const existingCartItem = cartCtx.items[existingCartItemIndex];
+    console.log(existingCartItem);
+    const updatedItem = {
+      ...existingCartItem,
+      amount: 1,
+    };
+
+    cartCtx.addItem(updatedItem);
+  };
+  const removeItemHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
+
   let total = 0;
-  const items = itemList.map((item) => {
+  const items = cartCtx.items.map((item) => {
     total = total + item.price * item.amount;
 
     return (
       <>
         <ListItem>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item xs={9}>
               <Box>{item.name}</Box>
+              <Stack direction="row" spacing={3}>
+                <Stack fontWeight="bold" color="rgb(194, 96, 45)">
+                  {`  ₹${item.price.toFixed(2)}`}
+                </Stack>
+                <Stack>
+                  {" "}
+                  <TextField
+                    id={"DefaultItem"}
+                    value={item.amount}
+                    // inputRef={inputRef}
+                    size="small"
+                    margin="12px"
+                    type="number"
+                    style={{
+                      float: "right",
+                    }}
+                    sx={{
+                      width: "40px",
+                      "& .MuiInputBase-input": {
+                        padding: "1px",
+                        marginLeft: "4px",
+                      },
+                    }}
+                  />
+                </Stack>
+              </Stack>
+            </Grid>
+            <Grid>
+              <Stack direction="row" alighItems="center">
+                <Stack>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="error"
+                    onClick={() => removeItemHandler(item.id)}
+                    sx={{
+                      "& 	.MuiButton-root": {
+                        fontStyle: "bold",
+                      },
+                    }}
+                  >
+                    {" "}
+                    -{" "}
+                  </Button>
+                </Stack>
+                <Stack>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    id={item.id}
+                    color="error"
+                    fontWeight="1000"
+                    onClick={() => addItemHandler(item)}
+                    sx={{
+                      "& .MuiButtonBase-root": {
+                        fontWeight: "1000",
+                      },
+                    }}
+                  >
+                    {" "}
+                    +{" "}
+                  </Button>
+                </Stack>
+              </Stack>
             </Grid>
           </Grid>
         </ListItem>

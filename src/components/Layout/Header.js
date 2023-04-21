@@ -5,9 +5,8 @@ import CartContext from "../../store/cartContext";
 
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
-  const numberOfCartItems = cartCtx.items.reduce((curr, item) => {
-    return curr + item.amount;
-  }, 0);
+  let quantity = 0;
+  cartCtx.items.forEach((item) => (quantity = quantity + +item.amount));
 
   const showCart = () => {
     props.setOpen(true);
@@ -55,7 +54,7 @@ const Header = (props) => {
             size="small"
           >
             <ShoppingCartIcon /> Your Cart
-            <Chip label={numberOfCartItems} color="secondary" size="small" />
+            <Chip label={quantity} color="secondary" size="small" />
           </Button>
         </Box>
       </Grid>

@@ -19,7 +19,7 @@ const MealSummary = () => {
         flexDirection: "column",
       }}
     >
-      <Typography variant="h4" color="white" fontWeight="bold">
+      <Typography variant="h4" color="white" fontWeight="bold" mx={4} mt={2}>
         Delicius Food, Delivered To You
       </Typography>
       <Typography variant="subtitle" color="white" mx={4} mt={2}>

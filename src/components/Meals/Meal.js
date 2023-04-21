@@ -16,7 +16,10 @@ const Meal = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    cartCtx.addItem(props.item);
+
+    const quantity = document.getElementById(`Amount_${props.id}`).value;
+    cartCtx.addItem({ ...props.item, amount: quantity });
+    document.getElementById(`Amount_${props.id}`).value = 1;
     // console.log(cartCtx);
   };
   return (
@@ -63,9 +66,10 @@ const Meal = (props) => {
               </Typography>
 
               <TextField
-                id=""
+                id={`Amount_${props.id}`}
                 size="small"
                 margin="12px"
+                defaultValue="1"
                 type="number"
                 style={{
                   float: "right",
