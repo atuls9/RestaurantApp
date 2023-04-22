@@ -23,7 +23,7 @@ const CartProvider = (props) => {
     setItems(updatedItems);
   };
 
-  const removeItemToCartHandler = (id) => {
+  const removeItemFromCartHandler = (id) => {
     const existingItemIndex = items.findIndex((el) => el.id === id);
     const existingItem = items[existingItemIndex];
     console.log("existingCartItem", existingItem);
@@ -50,7 +50,7 @@ const CartProvider = (props) => {
   const cartContext = {
     items: items,
     addItem: addItemToCartHandler,
-    removeItem: removeItemToCartHandler,
+    removeItem: removeItemFromCartHandler,
   };
   return (
     <CartContext.Provider value={cartContext}>
