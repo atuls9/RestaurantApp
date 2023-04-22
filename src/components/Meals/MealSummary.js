@@ -12,7 +12,7 @@ const MealSummary = () => {
         display: "flex",
         marginTop: "-7rem",
         marginLeft: "30%",
-        backgroundColor: "#3F3F3F",
+        backgroundColor: "#FFFBDD",
         position: "absolute",
         borderRadius: "1rem",
         justifyContent: "center",
@@ -21,7 +21,7 @@ const MealSummary = () => {
     >
       <Typography
         variant="h4"
-        color="white"
+        color="black"
         textAlign="center"
         fontWeight="bold"
         mt={1}
@@ -31,7 +31,7 @@ const MealSummary = () => {
       </Typography>
       <Typography
         variant="subtitle"
-        color="white"
+        color="black"
         mt={2}
         mx={3}
         textAlign="center"
@@ -41,7 +41,7 @@ const MealSummary = () => {
       </Typography>
       <Typography
         variant="subtitle"
-        color="white"
+        color="black"
         textAlign="center"
         mx={3}
         mt={2}

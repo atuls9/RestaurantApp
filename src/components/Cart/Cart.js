@@ -41,7 +41,6 @@ const Cart = (props) => {
                   <TextField
                     id={"DefaultItem"}
                     value={item.amount}
-                    // inputRef={inputRef}
                     size="small"
                     margin="12px"
                     type="number"
@@ -53,6 +52,7 @@ const Cart = (props) => {
                       "& .MuiInputBase-input": {
                         padding: "1px",
                         marginLeft: "4px",
+                        textAlign: "center",
                       },
                     }}
                   />

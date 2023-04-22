@@ -19,7 +19,7 @@ const Meal = (props) => {
     e.preventDefault();
 
     const quantity = document.getElementById(`Amount_${props.id}`).value;
-    if (quantity > 0) {
+    if (quantity > 0 && quantity < 6) {
       setWarningg(false);
       cartCtx.addItem({ ...props.item, amount: quantity });
 
@@ -27,11 +27,9 @@ const Meal = (props) => {
     } else {
       setWarningg(true);
     }
-    // console.log(cartCtx);
   };
   return (
     <>
-      {/* {console.log("inside render", cartCtx)} */}
       <ListItem>
         <Grid container>
           <Grid
@@ -61,7 +59,7 @@ const Meal = (props) => {
                   textDecoration: "underline",
                 }}
               >
-                Please Enter Valid Amount
+                Please Enter Valid Quantity
               </Typography>
             </Grid>
           )}
@@ -93,12 +91,14 @@ const Meal = (props) => {
                 type="number"
                 style={{
                   float: "right",
+                  textAlign: "center",
                 }}
                 sx={{
                   width: "40px",
                   "& .MuiInputBase-input": {
                     padding: "1px",
                     marginLeft: "4px",
+                    textAlign: "center",
                   },
                 }}
               />
