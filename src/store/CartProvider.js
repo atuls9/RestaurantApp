@@ -6,7 +6,6 @@ const CartProvider = (props) => {
 
   const addItemToCartHandler = (item) => {
     const existingCartItemIndex = items.findIndex((el) => el.id === item.id);
-    console.log("existingItem", existingCartItemIndex);
 
     const existingCartItem = items[existingCartItemIndex];
     let updatedItems;
@@ -15,31 +14,35 @@ const CartProvider = (props) => {
         ...existingCartItem,
         amount: +existingCartItem.amount + +item.amount,
       };
-      console.log("updatedItem", updatedItem);
       updatedItems = [...items];
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
       updatedItems = items.concat(item);
+      console.log(updatedItems, "add");
     }
     setItems(updatedItems);
-    console.log("inside addItemtocarthandler ", cartContext);
   };
-  const removeItemToCartHandler = (id) => {
-    const existingCartItemIndex = items.findIndex((el) => el.id === id);
-    const existingCartItem = items[existingCartItemIndex];
-    let updatedItems;
 
-    if (existingCartItem.amount === 1) {
+  const removeItemToCartHandler = (id) => {
+    const existingItemIndex = items.findIndex((el) => el.id === id);
+    const existingItem = items[existingItemIndex];
+    console.log("existingCartItem", existingItem);
+    let updatedItems;
+    console.log("existing.amount outside", existingItem.amount);
+
+    if (+existingItem.amount === 1) {
+      console.log("existing.amount", existingItem.amount);
       updatedItems = items.filter((item) => {
-        return id !== item.id;
+        return item.id !== id && item.amount > 0;
       });
+      console.log("updatedItems", updatedItems);
     } else {
       const updatedItem = {
-        ...existingCartItem,
-        amount: +existingCartItem.amount - 1,
+        ...existingItem,
+        amount: +existingItem.amount - 1,
       };
       updatedItems = [...items];
-      updatedItems[existingCartItemIndex] = updatedItem;
+      updatedItems[existingItemIndex] = updatedItem;
     }
     setItems(updatedItems);
   };

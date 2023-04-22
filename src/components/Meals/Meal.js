@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   ListItem,
   Box,
@@ -13,13 +13,20 @@ import CartContext from "../../store/cartContext";
 
 const Meal = (props) => {
   const cartCtx = useContext(CartContext);
+  const [warningg, setWarningg] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const quantity = document.getElementById(`Amount_${props.id}`).value;
-    cartCtx.addItem({ ...props.item, amount: quantity });
-    document.getElementById(`Amount_${props.id}`).value = 1;
+    if (quantity > 0) {
+      setWarningg(false);
+      cartCtx.addItem({ ...props.item, amount: quantity });
+
+      document.getElementById(`Amount_${props.id}`).value = 1;
+    } else {
+      setWarningg(true);
+    }
     // console.log(cartCtx);
   };
   return (
@@ -29,7 +36,7 @@ const Meal = (props) => {
         <Grid container>
           <Grid
             item
-            xs={8}
+            xs={5}
             style={{
               display: "block",
               marginTop: "8px",
@@ -42,9 +49,22 @@ const Meal = (props) => {
               {props.item.description}
             </Box>
             <Box fontWeight="bold" color="rgb(194, 96, 45)">
-              {`  $${props.item.price}`}
+              {`  ₹${props.item.price}`}
             </Box>
           </Grid>
+          {warningg && (
+            <Grid xs={3} alignSelf="center">
+              <Typography
+                fontWeight="bold"
+                color="red"
+                style={{
+                  textDecoration: "underline",
+                }}
+              >
+                Please Enter Valid Amount
+              </Typography>
+            </Grid>
+          )}
           <Grid
             item
             xs={2}

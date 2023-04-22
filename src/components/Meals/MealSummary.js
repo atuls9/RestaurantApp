@@ -19,14 +19,33 @@ const MealSummary = () => {
         flexDirection: "column",
       }}
     >
-      <Typography variant="h4" color="white" fontWeight="bold" mx={4} mt={2}>
+      <Typography
+        variant="h4"
+        color="white"
+        textAlign="center"
+        fontWeight="bold"
+        mt={1}
+        mx={2}
+      >
         Delicius Food, Delivered To You
       </Typography>
-      <Typography variant="subtitle" color="white" mx={4} mt={2}>
+      <Typography
+        variant="subtitle"
+        color="white"
+        mt={2}
+        mx={3}
+        textAlign="center"
+      >
         Choose your favorite meal from our broad selection of available meals
         and enjoy a delicious lunch or dinner at home.
       </Typography>
-      <Typography variant="subtitle" color="white" mx={4} mt={2}>
+      <Typography
+        variant="subtitle"
+        color="white"
+        textAlign="center"
+        mx={3}
+        mt={2}
+      >
         All our meals are cooked with high-quality ingredients, just-in-time and
         of course by experienced chefs!
       </Typography>

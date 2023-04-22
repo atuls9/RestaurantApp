@@ -15,18 +15,7 @@ const Cart = (props) => {
   const cartCtx = useContext(CartContext);
 
   const addItemHandler = (item) => {
-    const existingCartItemIndex = cartCtx.items.findIndex(
-      (el) => el.id === item.id
-    );
-
-    const existingCartItem = cartCtx.items[existingCartItemIndex];
-    console.log(existingCartItem);
-    const updatedItem = {
-      ...existingCartItem,
-      amount: 1,
-    };
-
-    cartCtx.addItem(updatedItem);
+    cartCtx.addItem({ ...item, amount: 1 });
   };
   const removeItemHandler = (id) => {
     cartCtx.removeItem(id);
@@ -41,11 +30,12 @@ const Cart = (props) => {
         <ListItem>
           <Grid container>
             <Grid item xs={9}>
-              <Box>{item.name}</Box>
-              <Stack direction="row" spacing={3}>
+              <Box fontWeight="bold">{item.name}</Box>
+              <Stack direction="row" spacing={1}>
                 <Stack fontWeight="bold" color="rgb(194, 96, 45)">
                   {`  ₹${item.price.toFixed(2)}`}
                 </Stack>
+                <Stack>X</Stack>
                 <Stack>
                   {" "}
                   <TextField
@@ -83,8 +73,9 @@ const Cart = (props) => {
                       },
                     }}
                   >
-                    {" "}
-                    -{" "}
+                    <Typography fontSize="1rem" fontWeight="bold">
+                      -
+                    </Typography>
                   </Button>
                 </Stack>
                 <Stack>
@@ -101,8 +92,9 @@ const Cart = (props) => {
                       },
                     }}
                   >
-                    {" "}
-                    +{" "}
+                    <Typography fontSize="1rem" fontWeight="bold">
+                      +
+                    </Typography>
                   </Button>
                 </Stack>
               </Stack>
@@ -126,11 +118,11 @@ const Cart = (props) => {
         <Grid item xs={3} sx={{ justifyContent: "flex-start" }}>
           <Typography fontWeight="bold">Total Amount</Typography>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           {/* {total.toFixed(2)} */}
         </Grid>
-        <Grid item xs={1}>
-          {total.toFixed(2)}
+        <Grid item xs={2} sx={{ fontWeight: "bold" }}>
+          {`  ₹${total.toFixed(2)}`}
         </Grid>
       </Grid>
       <Grid
@@ -155,22 +147,27 @@ const Cart = (props) => {
             paddingRight: "20px",
           }}
         >
-          close
+          Close
         </Button>
-        <Button
-          color="error"
-          variant="contained"
-          size="small"
-          style={{
-            marginTop: "1px",
-            marginLeft: "10px",
-            borderRadius: "24px",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-          }}
-        >
-          order
-        </Button>
+
+        {cartCtx.items.length ? (
+          <Button
+            color="error"
+            variant="contained"
+            size="small"
+            style={{
+              marginTop: "1px",
+              marginLeft: "10px",
+              borderRadius: "24px",
+              paddingLeft: "20px",
+              paddingRight: "20px",
+            }}
+          >
+            Order
+          </Button>
+        ) : (
+          ""
+        )}
       </Grid>
     </Box>
   );
